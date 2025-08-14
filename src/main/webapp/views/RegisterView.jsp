@@ -6,7 +6,6 @@
 <meta charset="UTF-8">
 <title>Pugazh - Register</title>
 <style>
-    /* Animated background */
     body {
       margin: 0;
       padding: 0;
@@ -19,14 +18,11 @@
       background-size: 600% 600%;
       animation: bgAnimation 10s ease infinite;
     }
-
     @keyframes bgAnimation {
       0% { background-position: 0% 50%; }
       50% { background-position: 100% 50%; }
       100% { background-position: 0% 50%; }
     }
-
-    /* Form container */
     .form-container {
       background: rgba(255, 255, 255, 0.15);
       padding: 30px 40px;
@@ -36,25 +32,21 @@
       animation: fadeIn 1.5s ease;
       width: 320px;
     }
-
     @keyframes fadeIn {
       from { opacity: 0; transform: translateY(-20px); }
       to { opacity: 1; transform: translateY(0); }
     }
-
     h2 {
       color: white;
       text-align: center;
       margin-bottom: 20px;
     }
-
     label {
       display: block;
       margin-top: 12px;
       font-weight: bold;
       color: white;
     }
-
     input[type="name"], input[type="password"], 
     input[type="email"], input[type="text"] {
       width: 100%;
@@ -65,11 +57,9 @@
       outline: none;
       transition: 0.3s;
     }
-
     input:focus {
       box-shadow: 0 0 10px #fff;
     }
-
     input[type="submit"] {
       width: 100%;
       margin-top: 20px;
@@ -82,11 +72,22 @@
       cursor: pointer;
       transition: 0.3s;
     }
-
     input[type="submit"]:hover {
       background: linear-gradient(to right, #dd2476, #ff512f);
       transform: scale(1.05);
       box-shadow: 0 0 10px white;
+    }
+    .login-link {
+      display: block;
+      margin-top: 15px;
+      text-align: center;
+      color: white;
+      text-decoration: none;
+      font-weight: bold;
+      transition: color 0.3s;
+    }
+    .login-link:hover {
+      color: yellow;
     }
 </style>
 </head>
@@ -110,6 +111,9 @@
       <input type="text" name="pin" placeholder="Enter your pin" required>
 
       <input type="submit" value="Register">
+
+      <!-- Navigation to Login Page -->
+      <a href="/NGPWEBAPP/views/LoginView.jsp" class="login-link">Already have an account? Login</a>
     </form>
   </div>
 </body>

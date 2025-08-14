@@ -2,10 +2,13 @@ package controllers;
 
 import jakarta.servlet.http.HttpServlet;
 import java.io.IOException;
+
+import dao.RegisterDao;
 import jakarta.servlet.Servlet;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.RegisterModel;
 
 /**
  * Servlet implementation class RegisterServlet
@@ -27,6 +30,19 @@ public class RegisterServlet extends HttpServlet implements Servlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		String  name=request.getParameter("uname");
+		String  pass=request.getParameter("pass");
+		String  email=request.getParameter("email");
+		String  mobile=request.getParameter("mobile");
+		String  pin=request.getParameter("pin");
+		RegisterModel rg=new RegisterModel();
+		rg.setName(name);
+		rg.setEmail(email);
+		rg.setMobile(mobile);
+		rg.setPass(pass);
+		rg.setPin(pin);
+		RegisterDao rd=new RegisterDao();
+		rd.register(rg);
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
