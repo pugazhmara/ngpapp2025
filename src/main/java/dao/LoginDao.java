@@ -5,9 +5,13 @@ import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.Statement;
 
+import model.LoginModel;
+
 public class LoginDao{
-    public static void main(String[] args) {
-        // Database URL, username, and password
+    public boolean login(LoginModel lm) {
+    	String uname=lm.getUsername();
+    	String pass=lm.getPassword();
+    	// Database URL, username, and password
         String jdbcURL = "jdbc:mysql://localhost:3306/ngpdb";
         String username = "root";
         String password = "";
@@ -21,20 +25,23 @@ public class LoginDao{
             Statement statement = connection.createStatement();
 
             // Step 3: Execute a query
-            String sql = "SELECT * FROM usertable";
+            String sql = "SELECT * FROM usertable where username='"+uname+"'and password='"+pass+"'";
             ResultSet resultSet = statement.executeQuery(sql);
-
-            // Step 4: Process the result set
-            while (resultSet.next()) {
-                String name = resultSet.getString("username");
-                String pass = resultSet.getString("password");
-                System.out.println("name: " + name + ", pass: " + pass);
+            if(resultSet.next()) {
+            	connection.close();
+            	return true;
+            }else {
+            	connection.close();
+            	return false;
             }
+            // Step 4: Process the result set
+            
 
             // Step 5: Close the connection
-            connection.close();
+            
         } catch (Exception e) {
             e.printStackTrace();
+            return false;
         }
     }
 }

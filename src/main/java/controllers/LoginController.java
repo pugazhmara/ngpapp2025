@@ -2,10 +2,12 @@ package controllers;
 
 import java.io.IOException;
 
+import dao.LoginDao;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
+import model.LoginModel;
 
 /**
  * Servlet implementation class LoginController
@@ -29,8 +31,14 @@ public class LoginController extends HttpServlet {
 		// TODO Auto-generated method stub
 		String username=request.getParameter("uname");
 		String password=request.getParameter("pass");
-		System.out.println(username+" "+password);
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		LoginModel lm=new LoginModel();
+		lm.setPassword(password);
+		lm.setUsername(username);
+		LoginDao ld=new LoginDao();
+		if(ld.login(lm)) {
+			response.sendRedirect("\\NGPWEBAPP\\views\\WelcomeView.jsp");
+		}
+		response.getWriter().append("Error in login ").append(request.getContextPath());
 	}
 
 	/**

@@ -42,7 +42,9 @@ public class RegisterServlet extends HttpServlet implements Servlet {
 		rg.setPass(pass);
 		rg.setPin(pin);
 		RegisterDao rd=new RegisterDao();
-		rd.register(rg);
+		if(rd.register(rg)) {
+			response.sendRedirect("\\NGPWEBAPP\\views\\LoginView.jsp");
+		}
 		response.getWriter().append("Served at: ").append(request.getContextPath());
 	}
 
